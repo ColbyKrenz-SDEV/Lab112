@@ -1,44 +1,53 @@
 // Your solution goes here 
 
+//initialize the function
 function playGuessingGame(numToGuess,totalGuesses) {
   let guessCounter = 0;
 
-  if(!totalGuesses){
+  if(!totalGuesses) {
     totalGuesses = 10
   }
 
-  var textPrompt = "Enter a number between 1 and 100.";
+  //first user prompt
+  let textPrompt = "Enter a number between 1 and 100.";
 
+  //while loop to prompt user until correct number is guessed
   while (totalGuesses > 0) {
     totalGuesses--;
     guessCounter++;
 
+    //prompt user for number
     var guess = prompt(textPrompt, guess);
 
+    //if user guess is smaller than the number, prompt user to guess higher
     if(guess < numToGuess) {
       textPrompt = guess + " is too small. Guess a larger number.";
     }
 
+    //if user guess is larger than the number, prompt user to guess lower
     else if(guess > numToGuess) {
       textPrompt = guess + " is too large. Guess a smaller number.";
     }
-    
+
+    //if user guess is not a number or is an empty string, prompt user to guess again
     else if(isNaN(guess) || guess == "") {
       textPrompt = "Please enter a number.";
       return 0;
     }
 
+    //if user hits cancel, end the prompts
     else if(guess == null) {
       return 0;
     }
 
+    //if user guess is correct, tell user how many guesses it took
     else if(guess == numToGuess) {
       console.log("You guessed the number!");
       return guessCounter;
     }
-    
   }
 
+  //if totalGuesses gets to zero, tell user they ran out of guesses
   if(totalGuesses == 0) {
     console.log("You ran out of guesses.");
     return 0;
