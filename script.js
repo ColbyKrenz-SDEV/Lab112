@@ -19,26 +19,27 @@ function playGuessingGame(numToGuess,totalGuesses) {
     //prompt user for number
     var guess = prompt(textPrompt, guess);
 
+    //if user hits cancel, end the prompts
+    if(guess == null) {
+      console.log("Canceled");
+      return 0;
+    }
+      
+    //if user guess is not a number or is an empty string, prompt user to guess again
+    else if(isNaN(guess) || guess === "") {
+      textPrompt = "Please enter a number.";
+      totalGuesses++;
+      guessCounter--;
+    }
+      
     //if user guess is smaller than the number, prompt user to guess higher
-    if(guess < numToGuess) {
+    else if(guess < numToGuess) {
       textPrompt = guess + " is too small. Guess a larger number.";
     }
 
     //if user guess is larger than the number, prompt user to guess lower
     else if(guess > numToGuess) {
       textPrompt = guess + " is too large. Guess a smaller number.";
-    }
-
-    //if user guess is not a number or is an empty string, prompt user to guess again
-    else if(isNaN(guess) || guess == "") {
-      textPrompt = "Please enter a number.";
-      totalGuesses++;
-      guessCounter--;
-    }
-
-    //if user hits cancel, end the prompts
-    else if(guess === null) {
-      return 0;
     }
 
     //if user guess is correct, tell user how many guesses it took
