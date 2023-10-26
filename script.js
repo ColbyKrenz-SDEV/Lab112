@@ -32,11 +32,12 @@ function playGuessingGame(numToGuess,totalGuesses) {
     //if user guess is not a number or is an empty string, prompt user to guess again
     else if(isNaN(guess) || guess == "") {
       textPrompt = "Please enter a number.";
-      return 0;
+      totalGuesses++;
+      guessCounter--;
     }
 
     //if user hits cancel, end the prompts
-    else if(guess == null) {
+    else if(guess === null) {
       return 0;
     }
 
